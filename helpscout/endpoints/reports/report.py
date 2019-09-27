@@ -1,5 +1,3 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
@@ -12,7 +10,7 @@ from helpscout.endpoints.reports.user import User
 
 
 class Report(Endpoint):
-    def chat_report(self, start: str, end: str, **kwargs) -> Dict:
+    def chat_report(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/chat',
             headers={
@@ -25,9 +23,9 @@ class Report(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def email_report(self, start: str, end: str, **kwargs) -> Dict:
+    def email_report(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/email',
             headers={
@@ -40,9 +38,9 @@ class Report(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def phone_report(self, start: str, end: str, **kwargs) -> Dict:
+    def phone_report(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/phone',
             headers={
@@ -55,7 +53,7 @@ class Report(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
     @property
     def company(self) -> Company:

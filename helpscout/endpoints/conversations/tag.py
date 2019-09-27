@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Tag(Endpoint):
-    def update_tags(self, conversation_id: int, tags: List[str]) -> int:
+    def update(self, conversation_id: int, tags: List[str]) -> requests.Response:
         response = requests.put(
             f'{self.base_url}/{conversation_id}/tags',
             headers={
@@ -14,8 +14,8 @@ class Tag(Endpoint):
                 'Content-Type': 'application/json; charset=UTF-8',
             },
             json={
-                'tags': tags
-            },
+                'tags': tags,
+            }
         )
 
-        return response.status_code
+        return response

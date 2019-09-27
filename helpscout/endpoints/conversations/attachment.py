@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Attachment(Endpoint):
-    def get_attachment_data(self, conversation_id: int, attachment_id: int) -> Dict:
+    def get(self, conversation_id: int, attachment_id: int) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/{conversation_id}/attachments/{attachment_id}/data',
             headers={
@@ -14,9 +12,9 @@ class Attachment(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def delete_attachment(self, conversation_id: int, attachment_id: int) -> int:
+    def delete(self, conversation_id: int, attachment_id: int) -> requests.Response:
         response = requests.delete(
             f'{self.base_url}/{conversation_id}/attachments/{attachment_id}',
             headers={
@@ -24,15 +22,22 @@ class Attachment(Endpoint):
             }
         )
 
-        return response.status_code
+        return response
 
-    def upload_attachment(self, conversation_id: int, thread_id: int, **kwargs) -> int:
+    def upload(
+        self, conversation_id: int, thread_id: int,
+        file_name: str, mime_type: str, data: str
+    ) -> requests.Response:
         response = requests.post(
             f'{self.base_url}/{conversation_id}/threads{thread_id}/attachments/',
             headers={
                 'Authorization': f'Bearer {self.client.access_token}',
             },
-            json={**kwargs}
+            json={
+                'fileName': file_name,
+                'mimeType': mime_type,
+                'data': data,
+            }
         )
 
-        return response.status_code
+        return response

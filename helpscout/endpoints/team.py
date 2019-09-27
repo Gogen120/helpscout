@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Team(Endpoint):
-    def list_teams(self, **kwargs) -> Dict:
+    def list_(self, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -15,9 +13,9 @@ class Team(Endpoint):
             params={**kwargs}
         )
 
-        return self._get_json(response)
+        return response
 
-    def members(self, team_id: int, **kwargs) -> Dict:
+    def members(self, team_id: int, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/{team_id}/members',
             headers={
@@ -26,4 +24,4 @@ class Team(Endpoint):
             params={**kwargs}
         )
 
-        return self._get_json(response)
+        return response

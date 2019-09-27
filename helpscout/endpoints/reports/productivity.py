@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Productivity(Endpoint):
-    def overall_report(self, start: str, end: str, **kwargs) -> Dict:
+    def overall_report(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity',
             headers={
@@ -19,9 +17,9 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def first_response_time(self, start: str, end: str, **kwargs) -> Dict:
+    def first_response_time(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity/first-response-time',
             headers={
@@ -34,9 +32,9 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def replies_sent(self, start: str, end: str, **kwargs) -> Dict:
+    def replies_sent(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity/replies-sent',
             headers={
@@ -49,9 +47,9 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def resolution_time(self, start: str, end: str, **kwargs) -> Dict:
+    def resolution_time(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity/resolution-time',
             headers={
@@ -64,9 +62,9 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def resolved(self, start: str, end: str, **kwargs) -> Dict:
+    def resolved(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity/resolved',
             headers={
@@ -79,9 +77,9 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def response_time(self, start: str, end: str, **kwargs) -> Dict:
+    def response_time(self, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/productivity/response-time',
             headers={
@@ -94,4 +92,4 @@ class Productivity(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response

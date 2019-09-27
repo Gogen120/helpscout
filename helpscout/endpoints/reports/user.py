@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class User(Endpoint):
-    def overall_report(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def overall_report(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user',
             headers={
@@ -20,9 +18,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def conversation_history(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def conversation_history(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/conversation-history',
             headers={
@@ -36,9 +34,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def customers_helped(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def customers_helped(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/customers-helped',
             headers={
@@ -52,9 +50,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def drilldown(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/drilldown',
             headers={
@@ -68,9 +66,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def happiness(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def happiness(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/happiness',
             headers={
@@ -84,9 +82,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def happiness_drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def happiness_drilldown(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/ratings',
             headers={
@@ -100,9 +98,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def replies(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def replies(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/replies',
             headers={
@@ -116,9 +114,9 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def resolution(self, user: int, start: str, end: str, **kwargs) -> Dict:
+    def resolution(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/user/resolutions',
             headers={
@@ -132,4 +130,4 @@ class User(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response

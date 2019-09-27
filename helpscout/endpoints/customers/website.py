@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Website(Endpoint):
-    def get(self, customer_id: int) -> Dict:
+    def get(self, customer_id: int) -> requests.Response:
         response = requests.get(
             f'{self.base_url}/{customer_id}/websitess',
             headers={
@@ -14,9 +12,9 @@ class Website(Endpoint):
             }
         )
 
-        return self._get_json(response)
+        return response
 
-    def create(self, customer_id: int, value: str) -> int:
+    def create(self, customer_id: int, value: str) -> requests.Response:
         response = requests.post(
             f'{self.base_url}/{customer_id}/websites',
             headers={
@@ -28,9 +26,9 @@ class Website(Endpoint):
             }
         )
 
-        return response.status_code
+        return response
 
-    def update(self, customer_id: int, website_id: int, value: str) -> int:
+    def update(self, customer_id: int, website_id: int, value: str) -> requests.Response:
         response = requests.put(
             f'{self.base_url}/{customer_id}/websites/{website_id}',
             headers={
@@ -42,9 +40,9 @@ class Website(Endpoint):
             }
         )
 
-        return response.status_code
+        return response
 
-    def delete(self, customer_id: int, website_id: int) -> int:
+    def delete(self, customer_id: int, website_id: int) -> requests.Response:
         response = requests.delete(
             f'{self.base_url}/{customer_id}/websites/{website_id}',
             headers={
@@ -52,4 +50,4 @@ class Website(Endpoint):
             }
         )
 
-        return response.status_code
+        return response

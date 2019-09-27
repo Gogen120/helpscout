@@ -1,12 +1,10 @@
-from typing import Dict
-
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Tag(Endpoint):
-    def list_tags(self, **kwargs) -> Dict:
+    def list_(self, **kwargs) -> requests.Response:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -15,4 +13,4 @@ class Tag(Endpoint):
             params={**kwargs}
         )
 
-        return self._get_json(response)
+        return response
