@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 class Website(Endpoint):
     def get(self, customer_id: int) -> requests.Response:
         response = requests.get(
-            f'{self.base_url}/{customer_id}/websitess',
+            f'{self.base_url}/{customer_id}/websites',
             headers={
                 'Authorization': f'Bearer {self.client.access_token}',
             }
