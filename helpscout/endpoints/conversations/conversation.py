@@ -3,6 +3,10 @@ from typing import Dict
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
+from helpscout.endpoints.conversations.attachment import Attachment
+from helpscout.endpoints.conversations.custom_field import CustomField
+from helpscout.endpoints.conversations.tag import Tag
+from helpscout.endpoints.conversations.thread import Thread
 
 
 class Conversation(Endpoint):
@@ -61,3 +65,19 @@ class Conversation(Endpoint):
         )
 
         return self._get_json(response)
+
+    @property
+    def attachment(self) -> Attachment:
+        return Attachment(client=self.client, base_url=self.base_url)
+
+    @property
+    def custom_field(self) -> CustomField:
+        return CustomField(client=self.client, base_url=self.base_url)
+
+    @property
+    def tag(self) -> Tag:
+        return Tag(client=self.client, base_url=self.base_url)
+
+    @property
+    def thread(self) -> Thread:
+        return Thread(client=self.client, base_url=self.base_url)

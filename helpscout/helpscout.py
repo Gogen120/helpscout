@@ -2,8 +2,10 @@ from typing import Dict
 
 import requests
 
-from helpscout.endpoints.conversation import Conversation
+from helpscout.endpoints.conversations.conversation import Conversation
+from helpscout.endpoints.customers.customer import Customer
 from helpscout.endpoints.mailbox import Mailbox
+from helpscout.endpoints.reports.report import Report
 from helpscout.endpoints.tag import Tag
 from helpscout.endpoints.team import Team
 from helpscout.endpoints.user import User
@@ -40,29 +42,37 @@ class Client:
         return self._auth_params.get('access_token', '')
 
     @property
-    def conversation(self):
+    def conversation(self) -> Conversation:
         return Conversation(client=self, base_url=f'{self.BASE_API_URL}/conversations')
 
     @property
-    def mailbox(self):
+    def customer(self) -> Customer:
+        return Customer(client=self, base_url=f'{self.BASE_API_URL}/customers')
+
+    @property
+    def mailbox(self) -> Mailbox:
         return Mailbox(client=self, base_url=f'{self.BASE_API_URL}/mailboxes')
 
     @property
-    def tag(self):
+    def report(self) -> Report:
+        return Report(client=self, base_url=f'{self.BASE_API_URL}/reports')
+
+    @property
+    def tag(self) -> Tag:
         return Tag(client=self, base_url=f'{self.BASE_API_URL}/tags')
 
     @property
-    def team(self):
+    def team(self) -> Team:
         return Team(client=self, base_url=f'{self.BASE_API_URL}/teams')
 
     @property
-    def user(self):
+    def user(self) -> User:
         return User(client=self, base_url=f'{self.BASE_API_URL}/users')
 
     @property
-    def webhook(self):
+    def webhook(self) -> Webhook:
         return Webhook(client=self, base_url=f'{self.BASE_API_URL}/webhooks')
 
     @property
-    def workflow(self):
+    def workflow(self) -> Workflow:
         return Workflow(client=self, base_url=f'{self.BASE_API_URL}/workflows')
