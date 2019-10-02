@@ -1,21 +1,13 @@
 from typing import List, Dict, Union
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class CustomField(Endpoint):
     def update(self, conversation_id: int, fields: List[Dict[str, Union[str, int]]]) -> int:
-        response = requests.put(
+        response = self.base_put_request(
             f'{self.base_url}/{conversation_id}/fields',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'fields': fields,
-            }
+            fields=fields,
         )
 
         return self.process_result_with_status_code(response, 204)

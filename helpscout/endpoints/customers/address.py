@@ -1,38 +1,24 @@
 from typing import List, Dict
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Address(Endpoint):
     def get(self, customer_id: int) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/{customer_id}/address',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
         )
 
-        return self.process_get_result(response)
+        return response
 
     def create(
         self, customer_id: int, city: str, state: str,
         postal_code: str, country: str, lines: List[str]
     ) -> int:
-        response = requests.post(
+        response = self.base_post_request(
             f'{self.base_url}/{customer_id}/address',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'city': city,
-                'state': state,
-                'postal_code': postal_code,
-                'country': country,
-                'lines': lines,
-            }
+            city=city, state=state, postal_code=postal_code,
+            country=country, lines=lines,
         )
 
         return self.process_result_with_status_code(response, 201)
@@ -41,29 +27,17 @@ class Address(Endpoint):
         self, customer_id: int, city: str, state: str,
         postal_code: str, country: str, lines: List[str]
     ) -> int:
-        response = requests.put(
+        response = self.base_put_request(
             f'{self.base_url}/{customer_id}/address',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'city': city,
-                'state': state,
-                'postal_code': postal_code,
-                'country': country,
-                'lines': lines,
-            }
+            city=city, state=state, postal_code=postal_code,
+            country=country, lines=lines,
         )
 
         return self.process_result_with_status_code(response, 204)
 
     def delete(self, customer_id: int) -> int:
-        response = requests.delete(
+        response = self.base_delete_request(
             f'{self.base_url}/{customer_id}/address',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
         )
 
         return self.process_result_with_status_code(response, 204)

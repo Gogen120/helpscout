@@ -1,46 +1,27 @@
 from typing import List, Dict
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Webhook(Endpoint):
     def list_(self) -> Dict:
-        response = requests.get(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
-        )
+        response = self.base_get_request(self.base_url)
 
-        return self.process_get_result(response)
+        return response
 
     def get(self, webhook_id: int) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/{webhook_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
         )
 
-        return self.process_get_result(response)
+        return response
 
     def create(
         self, url: str, events: List[str], secret: str, notification: bool = False
     ) -> int:
-        response = requests.get(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'url': url,
-                'events': events,
-                'notification': notification,
-                'secret': secret,
-            }
+        response = self.base_post_request(
+            f'{self.base_url}', url=url, events=events,
+            notification=notification, secret=secret,
         )
 
         return self.process_result_with_status_code(response, 201)
@@ -48,28 +29,14 @@ class Webhook(Endpoint):
     def update(
         self, url: str, events: List[str], secret: str, notification: bool = False
     ) -> int:
-        response = requests.put(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'url': url,
-                'events': events,
-                'notification': notification,
-                'secret': secret,
-            }
+        response = self.base_put_request(
+            f'{self.base_url}', url=url, events=events,
+            notification=notification, secret=secret,
         )
 
         return self.process_result_with_status_code(response, 204)
 
     def delete(self, webhook_id: int) -> int:
-        response = requests.delete(
-            f'{self.base_url}/{webhook_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
-        )
+        response = self.base_delete_request(f'{self.base_url}/{webhook_id}')
 
         return self.process_result_with_status_code(response, 204)

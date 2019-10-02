@@ -1,7 +1,5 @@
 from typing import Dict
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 from helpscout.endpoints.customers.address import Address
 from helpscout.endpoints.customers.chat_handler import ChatHandler
@@ -13,53 +11,33 @@ from helpscout.endpoints.customers.website import Website
 
 class Customer(Endpoint):
     def list_(self, **kwargs) -> Dict:
-        response = requests.get(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={**kwargs}
+        response = self.base_get_request(
+            self.base_url,
+            **kwargs,
         )
 
-        return self.process_get_result(response)
+        return response
 
     def get(self, customer_id: int, **kwargs) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/{customer_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={**kwargs}
+            **kwargs,
         )
 
-        return self.process_get_result(response)
+        return response
 
     def create(self, first_name: str, **kwargs) -> int:
-        response = requests.post(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'firstName': first_name,
-                **kwargs,
-            }
+        response = self.base_post_request(
+            self.base_url,
+            firstName=first_name, **kwargs,
         )
 
         return self.process_result_with_status_code(response, 201)
 
     def update(self, customer_id: int, first_name: str, **kwargs) -> int:
-        response = requests.put(
+        response = self.base_put_request(
             f'{self.base_url}/{customer_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={
-                'firstName': first_name,
-                **kwargs,
-            }
+            firstName=first_name, **kwargs,
         )
 
         return self.process_result_with_status_code(response, 204)

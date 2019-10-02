@@ -1,7 +1,5 @@
 from typing import Any, Dict
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 from helpscout.endpoints.conversations.attachment import Attachment
 from helpscout.endpoints.conversations.custom_field import CustomField
@@ -11,61 +9,36 @@ from helpscout.endpoints.conversations.thread import Thread
 
 class Conversation(Endpoint):
     def list_(self, **kwargs) -> Dict:
-        response = requests.get(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={**kwargs}
-        )
+        response = self.base_get_request(self.base_url, **kwargs)
 
-        return self.process_get_result(response)
+        return response
 
     def get(self, conversation_id: int, **kwargs) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/{conversation_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={**kwargs}
+            **kwargs,
         )
 
-        return self.process_get_result(response)
+        return response
 
     def update(self, conversation_id: int, op: str, path: str, value: Any = None) -> int:
-        response = requests.patch(
+        response = self.base_patch_request(
             f'{self.base_url}/{conversation_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            params={
-                'op': op,
-                'path': path,
-                'value': value,
-            }
+            op=op, path=path, value=value,
         )
 
         return self.process_result_with_status_code(response, 204)
 
     def delete(self, conversation_id: int) -> int:
-        response = requests.delete(
+        response = self.base_delete_request(
             f'{self.base_url}/{conversation_id}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            }
         )
 
         return self.process_result_with_status_code(response, 204)
 
     def create(self, **kwargs) -> int:
-        response = requests.post(
-            f'{self.base_url}',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
-            },
-            json={**kwargs}
+        response = self.base_post_request(
+            self.base_url, **kwargs,
         )
 
         return self.process_result_with_status_code(response, 201)

@@ -1,7 +1,5 @@
 from typing import Dict
 
-import requests
-
 from helpscout.endpoints.endpoint import Endpoint
 from helpscout.endpoints.reports.company import Company
 from helpscout.endpoints.reports.conversation import Conversation
@@ -13,49 +11,28 @@ from helpscout.endpoints.reports.user import User
 
 class Report(Endpoint):
     def chat_report(self, start: str, end: str, **kwargs) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/chat',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={
-                'start': start,
-                'end': end,
-                **kwargs,
-            }
+            start=start, end=end, **kwargs
         )
 
-        return self.process_get_result(response)
+        return response
 
     def email_report(self, start: str, end: str, **kwargs) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/email',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={
-                'start': start,
-                'end': end,
-                **kwargs,
-            }
+            start=start, end=end, **kwargs
         )
 
-        return self.process_get_result(response)
+        return response
 
     def phone_report(self, start: str, end: str, **kwargs) -> Dict:
-        response = requests.get(
+        response = self.base_get_request(
             f'{self.base_url}/phone',
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-            },
-            params={
-                'start': start,
-                'end': end,
-                **kwargs,
-            }
+            start=start, end=end, **kwargs
         )
 
-        return self.process_get_result(response)
+        return response
 
     @property
     def company(self) -> Company:
