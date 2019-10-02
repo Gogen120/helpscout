@@ -13,6 +13,9 @@ from helpscout.endpoints.webhook import Webhook
 from helpscout.endpoints.workflow import Workflow
 
 
+# TODO: подумать над возвращаемыми типами для методов удаления и обновления
+
+
 class Client:
     BASE_API_URL = 'https://api.helpscout.net/v2'
 
@@ -37,6 +40,13 @@ class Client:
         )
 
         return response.json()
+
+    @property
+    def auth_params(self):
+        return self._auth_params
+
+    def update_access_token(self):
+        return self._get_authentication_params()
 
     def _get_access_token(self) -> str:
         return self._auth_params.get('access_token', '')

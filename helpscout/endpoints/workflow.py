@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 import requests
 
@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Workflow(Endpoint):
-    def list_(self, **kwargs) -> requests.Response:
+    def list_(self, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -15,11 +15,11 @@ class Workflow(Endpoint):
             params={**kwargs}
         )
 
-        return response
+        return self.process_get_result(response)
 
     def update_status(
         self, workflow_id: int, op: str, value: str, path: str
-    ) -> requests.Response:
+    ) -> int:
         response = requests.patch(
             f'{self.base_url}/{workflow_id}',
             headers={
@@ -33,9 +33,9 @@ class Workflow(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def run_manual(self, workflow_id: int, conversation_ids: List[int]) -> requests.Response:
+    def run_manual(self, workflow_id: int, conversation_ids: List[int]) -> int:
         response = requests.patch(
             f'{self.base_url}/{workflow_id}/run',
             headers={
@@ -47,4 +47,4 @@ class Workflow(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 import requests
 
@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Webhook(Endpoint):
-    def list_(self) -> requests.Response:
+    def list_(self) -> Dict:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -14,9 +14,9 @@ class Webhook(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def get(self, webhook_id: int) -> requests.Response:
+    def get(self, webhook_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{webhook_id}',
             headers={
@@ -24,11 +24,11 @@ class Webhook(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(
         self, url: str, events: List[str], secret: str, notification: bool = False
-    ) -> requests.Response:
+    ) -> int:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -43,11 +43,11 @@ class Webhook(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
     def update(
         self, url: str, events: List[str], secret: str, notification: bool = False
-    ) -> requests.Response:
+    ) -> int:
         response = requests.put(
             f'{self.base_url}',
             headers={
@@ -62,9 +62,9 @@ class Webhook(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def delete(self, webhook_id: int) -> requests.Response:
+    def delete(self, webhook_id: int) -> int:
         response = requests.delete(
             f'{self.base_url}/{webhook_id}',
             headers={
@@ -72,4 +72,4 @@ class Webhook(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)

@@ -1,3 +1,5 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
@@ -10,7 +12,7 @@ from helpscout.endpoints.customers.website import Website
 
 
 class Customer(Endpoint):
-    def list_(self, **kwargs) -> requests.Response:
+    def list_(self, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -19,9 +21,9 @@ class Customer(Endpoint):
             params={**kwargs}
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def get(self, customer_id: int, **kwargs) -> requests.Response:
+    def get(self, customer_id: int, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/{customer_id}',
             headers={
@@ -30,9 +32,9 @@ class Customer(Endpoint):
             params={**kwargs}
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def create(self, first_name: str, **kwargs) -> requests.Response:
+    def create(self, first_name: str, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}',
             headers={
@@ -45,9 +47,9 @@ class Customer(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
-    def update(self, customer_id: int, first_name: str, **kwargs) -> requests.Response:
+    def update(self, customer_id: int, first_name: str, **kwargs) -> int:
         response = requests.put(
             f'{self.base_url}/{customer_id}',
             headers={
@@ -60,7 +62,7 @@ class Customer(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
     @property
     def address(self) -> Address:

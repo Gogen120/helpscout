@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Mailbox(Endpoint):
-    def list_(self) -> requests.Response:
+    def list_(self) -> Dict:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -12,9 +14,9 @@ class Mailbox(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def mailbox(self, mailbox_id: int) -> requests.Response:
+    def mailbox(self, mailbox_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{mailbox_id}',
             headers={
@@ -22,9 +24,9 @@ class Mailbox(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def mailbox_fields(self, mailbox_id: int) -> requests.Response:
+    def mailbox_fields(self, mailbox_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{mailbox_id}/fields',
             headers={
@@ -32,9 +34,9 @@ class Mailbox(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def mailbox_folders(self, mailbox_id: int) -> requests.Response:
+    def mailbox_folders(self, mailbox_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{mailbox_id}/folders',
             headers={
@@ -42,4 +44,4 @@ class Mailbox(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)

@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class SocialProfile(Endpoint):
-    def get(self, customer_id: int) -> requests.Response:
+    def list_(self, customer_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{customer_id}/social-profiles',
             headers={
@@ -12,9 +14,9 @@ class SocialProfile(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def create(self, customer_id: int, type_: str, value: str) -> requests.Response:
+    def create(self, customer_id: int, type_: str, value: str) -> int:
         response = requests.post(
             f'{self.base_url}/{customer_id}/social-profiles',
             headers={
@@ -27,9 +29,9 @@ class SocialProfile(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
-    def update(self, customer_id: int, profile_id: int, type_: str, value: str) -> requests.Response:
+    def update(self, customer_id: int, profile_id: int, type_: str, value: str) -> int:
         response = requests.put(
             f'{self.base_url}/{customer_id}/social-profiles/{profile_id}',
             headers={
@@ -42,9 +44,9 @@ class SocialProfile(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def delete(self, customer_id: int, profile_id: int) -> requests.Response:
+    def delete(self, customer_id: int, profile_id: int) -> int:
         response = requests.delete(
             f'{self.base_url}/{customer_id}/social-profiles/{profile_id}',
             headers={
@@ -52,4 +54,4 @@ class SocialProfile(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)

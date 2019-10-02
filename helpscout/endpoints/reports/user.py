@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class User(Endpoint):
-    def overall_report(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def overall_report(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user',
             headers={
@@ -18,9 +20,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def conversation_history(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def conversation_history(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/conversation-history',
             headers={
@@ -34,9 +36,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def customers_helped(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def customers_helped(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/customers-helped',
             headers={
@@ -50,9 +52,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def drilldown(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/drilldown',
             headers={
@@ -66,9 +68,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def happiness(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def happiness(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/happiness',
             headers={
@@ -82,9 +84,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def happiness_drilldown(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def happiness_drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/ratings',
             headers={
@@ -98,9 +100,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def replies(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def replies(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/replies',
             headers={
@@ -114,9 +116,9 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def resolution(self, user: int, start: str, end: str, **kwargs) -> requests.Response:
+    def resolution(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/user/resolutions',
             headers={
@@ -130,4 +132,4 @@ class User(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)

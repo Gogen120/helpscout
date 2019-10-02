@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Company(Endpoint):
-    def overall_report(self, start: str, end: str, **kwargs) -> requests.Response:
+    def overall_report(self, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/company',
             headers={
@@ -17,9 +19,9 @@ class Company(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def customers_helped(self, start: str, end: str, **kwargs) -> requests.Response:
+    def customers_helped(self, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/company/customers-helped',
             headers={
@@ -32,9 +34,9 @@ class Company(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def drilldown(self, start: str, end: str, range_: str, **kwargs) -> requests.Response:
+    def drilldown(self, start: str, end: str, range_: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/company/drilldown',
             headers={
@@ -48,4 +50,4 @@ class Company(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)

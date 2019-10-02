@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 import requests
 
@@ -10,7 +10,7 @@ from helpscout.endpoints.conversations.thread import Thread
 
 
 class Conversation(Endpoint):
-    def list_(self, **kwargs) -> requests.Response:
+    def list_(self, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}',
             headers={
@@ -19,9 +19,9 @@ class Conversation(Endpoint):
             params={**kwargs}
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def get(self, conversation_id: int, **kwargs) -> requests.Response:
+    def get(self, conversation_id: int, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/{conversation_id}',
             headers={
@@ -30,9 +30,9 @@ class Conversation(Endpoint):
             params={**kwargs}
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def update(self, conversation_id: int, op: str, path: str, value: Any = None) -> requests.Response:
+    def update(self, conversation_id: int, op: str, path: str, value: Any = None) -> int:
         response = requests.patch(
             f'{self.base_url}/{conversation_id}',
             headers={
@@ -46,9 +46,9 @@ class Conversation(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def delete(self, conversation_id: int) -> requests.Response:
+    def delete(self, conversation_id: int) -> int:
         response = requests.delete(
             f'{self.base_url}/{conversation_id}',
             headers={
@@ -56,9 +56,9 @@ class Conversation(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def create(self, **kwargs) -> requests.Response:
+    def create(self, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}',
             headers={
@@ -68,7 +68,7 @@ class Conversation(Endpoint):
             json={**kwargs}
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
     @property
     def attachment(self) -> Attachment:

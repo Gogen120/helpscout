@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Doc(Endpoint):
-    def overall_report(self, start: str, end: str, **kwargs) -> requests.Response:
+    def overall_report(self, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/docs',
             headers={
@@ -17,4 +19,4 @@ class Doc(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)

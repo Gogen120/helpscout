@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class CustomField(Endpoint):
-    def update(self, conversation_id: int, fields: List[Dict[str, Union[str, int]]]) -> requests.Response:
+    def update(self, conversation_id: int, fields: List[Dict[str, Union[str, int]]]) -> int:
         response = requests.put(
             f'{self.base_url}/{conversation_id}/fields',
             headers={
@@ -18,4 +18,4 @@ class CustomField(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)

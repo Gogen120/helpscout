@@ -1,10 +1,12 @@
+from typing import Dict
+
 import requests
 
 from helpscout.endpoints.endpoint import Endpoint
 
 
 class Happiness(Endpoint):
-    def overall_report(self, start: str, end: str, **kwargs) -> requests.Response:
+    def overall_report(self, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/happiness',
             headers={
@@ -17,9 +19,9 @@ class Happiness(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
-    def ratings(self, start: str, end: str, **kwargs) -> requests.Response:
+    def ratings(self, start: str, end: str, **kwargs) -> Dict:
         response = requests.get(
             f'{self.base_url}/happiness/ratings',
             headers={
@@ -32,4 +34,4 @@ class Happiness(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 import requests
 
@@ -6,7 +6,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Thread(Endpoint):
-    def list_(self, conversation_id: int) -> requests.Response:
+    def list_(self, conversation_id: int) -> Dict:
         response = requests.get(
             f'{self.base_url}/{conversation_id}/threads',
             headers={
@@ -14,12 +14,12 @@ class Thread(Endpoint):
             }
         )
 
-        return response
+        return self.process_get_result(response)
 
     def update(
         self, conversation_id: int, thread_id: int,
         op: str, path: str, value: Any
-    ) -> requests.Response:
+    ) -> int:
         response = requests.patch(
             f'{self.base_url}/{conversation_id}/threads/{thread_id}',
             headers={
@@ -33,9 +33,9 @@ class Thread(Endpoint):
             }
         )
 
-        return response
+        return self.process_result_with_status_code(response, 204)
 
-    def create_reply_thread(self, conversation_id: int, **kwargs) -> requests.Response:
+    def create_reply_thread(self, conversation_id: int, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}/{conversation_id}/reply',
             headers={
@@ -45,9 +45,9 @@ class Thread(Endpoint):
             json={**kwargs}
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
-    def create_phone_thread(self, conversation_id: int, **kwargs) -> requests.Response:
+    def create_phone_thread(self, conversation_id: int, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}/{conversation_id}/phones',
             headers={
@@ -57,9 +57,9 @@ class Thread(Endpoint):
             json={**kwargs}
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
-    def create_note(self, conversation_id: int, **kwargs) -> requests.Response:
+    def create_note(self, conversation_id: int, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}/{conversation_id}/notes',
             headers={
@@ -69,9 +69,9 @@ class Thread(Endpoint):
             json={**kwargs}
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
-    def create_customer_thread(self, conversation_id: int, **kwargs) -> requests.Response:
+    def create_customer_thread(self, conversation_id: int, **kwargs) -> int:
         response = requests.post(
             f'{self.base_url}/{conversation_id}/customer',
             headers={
@@ -81,7 +81,7 @@ class Thread(Endpoint):
             json={**kwargs}
         )
 
-        return response
+        return self.process_result_with_status_code(response, 201)
 
     def create_chat_thread(self, conversation_id: int, **kwargs) -> int:
         response = requests.post(
@@ -93,4 +93,4 @@ class Thread(Endpoint):
             json={**kwargs}
         )
 
-        return response.status_code
+        return self.process_result_with_status_code(response, 201)
