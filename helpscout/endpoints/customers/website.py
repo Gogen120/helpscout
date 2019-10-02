@@ -9,7 +9,7 @@ class Website(Endpoint):
             f'{self.base_url}/{customer_id}/websites',
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(self, customer_id: int, value: str) -> int:
         response = self.base_post_request(

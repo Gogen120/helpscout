@@ -10,7 +10,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def conversation_history(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -18,7 +18,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def customers_helped(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -26,7 +26,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -34,7 +34,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def happiness(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -42,7 +42,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def happiness_drilldown(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -50,7 +50,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def replies(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -58,7 +58,7 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def resolution(self, user: int, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -66,4 +66,4 @@ class User(Endpoint):
             user=user, start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)

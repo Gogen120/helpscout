@@ -9,7 +9,7 @@ class Email(Endpoint):
             f'{self.base_url}/{customer_id}/emails',
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(self, customer_id: int, type_: str, value: str) -> int:
         response = self.base_post_request(

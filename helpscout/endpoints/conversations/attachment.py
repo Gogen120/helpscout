@@ -9,7 +9,7 @@ class Attachment(Endpoint):
             f'{self.base_url}/{conversation_id}/attachments/{attachment_id}/data'
         )
 
-        return response
+        return self.process_get_result(response)
 
     def delete(self, conversation_id: int, attachment_id: int) -> int:
         response = self.base_delete_request(

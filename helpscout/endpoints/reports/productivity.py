@@ -10,7 +10,7 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def first_response_time(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -18,7 +18,7 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def replies_sent(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -26,7 +26,7 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def resolution_time(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -34,7 +34,7 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def resolved(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -42,7 +42,7 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def response_time(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -50,4 +50,4 @@ class Productivity(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)

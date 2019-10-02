@@ -10,7 +10,7 @@ class Endpoint:
         self.client = client
         self.base_url = base_url
 
-    def _process_get_result(self, response: requests.Response) -> Dict:
+    def process_get_result(self, response: requests.Response) -> Dict:
         if response.status_code == 400:
             raise exc.BadRequestException
         elif response.status_code == 401:
@@ -26,7 +26,7 @@ class Endpoint:
 
         return response.status_code
 
-    def base_get_request(self, base_url, **kwargs) -> Dict:
+    def base_get_request(self, base_url, **kwargs) -> requests.Response:
         response = requests.get(
             base_url,
             headers={
@@ -35,7 +35,7 @@ class Endpoint:
             params={**kwargs}
         )
 
-        return self._process_get_result(response)
+        return response
 
     def base_put_request(self, base_url, **kwargs) -> requests.Response:
         response = requests.put(

@@ -9,7 +9,7 @@ class Address(Endpoint):
             f'{self.base_url}/{customer_id}/address',
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(
         self, customer_id: int, city: str, state: str,

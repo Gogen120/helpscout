@@ -16,7 +16,7 @@ class Report(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def email_report(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -24,7 +24,7 @@ class Report(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def phone_report(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -32,7 +32,7 @@ class Report(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     @property
     def company(self) -> Company:

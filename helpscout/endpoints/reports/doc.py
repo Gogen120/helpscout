@@ -10,4 +10,4 @@ class Doc(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)

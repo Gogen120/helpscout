@@ -10,7 +10,7 @@ class Company(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def customers_helped(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -18,7 +18,7 @@ class Company(Endpoint):
             start=start, end=end, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)
 
     def drilldown(self, start: str, end: str, range_: str, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -26,4 +26,4 @@ class Company(Endpoint):
             start=start, end=end, range=range_, **kwargs
         )
 
-        return response
+        return self.process_get_result(response)

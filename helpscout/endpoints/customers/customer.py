@@ -16,7 +16,7 @@ class Customer(Endpoint):
             **kwargs,
         )
 
-        return response
+        return self.process_get_result(response)
 
     def get(self, customer_id: int, **kwargs) -> Dict:
         response = self.base_get_request(
@@ -24,7 +24,7 @@ class Customer(Endpoint):
             **kwargs,
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(self, first_name: str, **kwargs) -> int:
         response = self.base_post_request(

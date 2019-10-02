@@ -9,7 +9,7 @@ class Thread(Endpoint):
             f'{self.base_url}/{conversation_id}/threads',
         )
 
-        return response
+        return self.process_get_result(response)
 
     def update(
         self, conversation_id: int, thread_id: int,

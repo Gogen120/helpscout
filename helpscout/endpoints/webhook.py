@@ -7,14 +7,14 @@ class Webhook(Endpoint):
     def list_(self) -> Dict:
         response = self.base_get_request(self.base_url)
 
-        return response
+        return self.process_get_result(response)
 
     def get(self, webhook_id: int) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{webhook_id}',
         )
 
-        return response
+        return self.process_get_result(response)
 
     def create(
         self, url: str, events: List[str], secret: str, notification: bool = False
