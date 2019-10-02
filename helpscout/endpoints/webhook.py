@@ -27,10 +27,11 @@ class Webhook(Endpoint):
         return self.process_result_with_status_code(response, 201)
 
     def update(
-        self, url: str, events: List[str], secret: str, notification: bool = False
+        self, webhook_id: int, url: str, events: List[str],
+        secret: str, notification: bool = False,
     ) -> int:
         response = self.base_put_request(
-            f'{self.base_url}', url=url, events=events,
+            f'{self.base_url}/{webhook_id}', url=url, events=events,
             notification=notification, secret=secret,
         )
 
