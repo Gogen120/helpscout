@@ -4,7 +4,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Email(Endpoint):
-    def list_(self, customer_id: int) -> Dict:
+    def list(self, customer_id: int) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{customer_id}/emails',
         )

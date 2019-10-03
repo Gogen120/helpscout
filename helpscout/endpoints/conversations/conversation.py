@@ -8,7 +8,7 @@ from helpscout.endpoints.conversations.thread import Thread
 
 
 class Conversation(Endpoint):
-    def list_(self, **kwargs) -> Dict:
+    def list(self, **kwargs) -> Dict:
         response = self.base_get_request(self.base_url, **kwargs)
 
         return self.process_get_result(response)
@@ -16,7 +16,7 @@ class Conversation(Endpoint):
     def get(self, conversation_id: int, **kwargs) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{conversation_id}',
-            **kwargs,
+            **kwarg,
         )
 
         return self.process_get_result(response)

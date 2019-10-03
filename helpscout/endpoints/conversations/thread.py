@@ -4,7 +4,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Thread(Endpoint):
-    def list_(self, conversation_id: int) -> Dict:
+    def list(self, conversation_id: int) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{conversation_id}/threads',
         )

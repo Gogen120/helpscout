@@ -10,7 +10,7 @@ from helpscout.endpoints.customers.website import Website
 
 
 class Customer(Endpoint):
-    def list_(self, **kwargs) -> Dict:
+    def list(self, **kwargs) -> Dict:
         response = self.base_get_request(
             self.base_url,
             **kwargs,
@@ -18,7 +18,7 @@ class Customer(Endpoint):
 
         return self.process_get_result(response)
 
-    def get(self, customer_id: int, **kwargs) -> Dict:
+    def ge(self, customer_id: int, **kwargs) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{customer_id}',
             **kwargs,

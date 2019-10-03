@@ -4,7 +4,7 @@ from helpscout.endpoints.endpoint import Endpoint
 
 
 class Webhook(Endpoint):
-    def list_(self) -> Dict:
+    def list(self) -> Dict:
         response = self.base_get_request(self.base_url)
 
         return self.process_get_result(response)
