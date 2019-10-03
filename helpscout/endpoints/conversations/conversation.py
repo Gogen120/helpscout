@@ -16,7 +16,7 @@ class Conversation(Endpoint):
     def get(self, conversation_id: int, **kwargs) -> Dict:
         response = self.base_get_request(
             f'{self.base_url}/{conversation_id}',
-            **kwarg,
+            **kwargs,
         )
 
         return self.process_get_result(response)
