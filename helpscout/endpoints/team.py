@@ -10,8 +10,6 @@ class Team(Endpoint):
         return self.process_get_result(response)
 
     def members(self, team_id: int, **kwargs) -> Dict:
-        response = self.base_get_request(
-            f'{self.base_url}/members', **kwargs,
-        )
+        response = self.base_get_request(f"{self.base_url}/members", **kwargs)
 
         return self.process_get_result(response)

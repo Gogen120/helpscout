@@ -12,24 +12,21 @@ from helpscout.endpoints.reports.user import User
 class Report(Endpoint):
     def chat_report(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
-            f'{self.base_url}/chat',
-            start=start, end=end, **kwargs
+            f"{self.base_url}/chat", start=start, end=end, **kwargs
         )
 
         return self.process_get_result(response)
 
     def email_report(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
-            f'{self.base_url}/email',
-            start=start, end=end, **kwargs
+            f"{self.base_url}/email", start=start, end=end, **kwargs
         )
 
         return self.process_get_result(response)
 
     def phone_report(self, start: str, end: str, **kwargs) -> Dict:
         response = self.base_get_request(
-            f'{self.base_url}/phone',
-            start=start, end=end, **kwargs
+            f"{self.base_url}/phone", start=start, end=end, **kwargs
         )
 
         return self.process_get_result(response)

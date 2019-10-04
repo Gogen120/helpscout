@@ -29,10 +29,8 @@ class Endpoint:
     def base_get_request(self, base_url, **kwargs) -> requests.Response:
         response = requests.get(
             base_url,
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}'
-            },
-            params={**kwargs}
+            headers={"Authorization": f"Bearer {self.client.access_token}"},
+            params={**kwargs},
         )
 
         return response
@@ -41,10 +39,10 @@ class Endpoint:
         response = requests.put(
             base_url,
             headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
+                "Authorization": f"Bearer {self.client.access_token}",
+                "Content-Type": "application/json; charset=UTF-8",
             },
-            json={**kwargs}
+            json={**kwargs},
         )
 
         return response
@@ -53,10 +51,10 @@ class Endpoint:
         response = requests.patch(
             base_url,
             headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
+                "Authorization": f"Bearer {self.client.access_token}",
+                "Content-Type": "application/json; charset=UTF-8",
             },
-            json={**kwargs}
+            json={**kwargs},
         )
 
         return response
@@ -65,20 +63,17 @@ class Endpoint:
         response = requests.post(
             base_url,
             headers={
-                'Authorization': f'Bearer {self.client.access_token}',
-                'Content-Type': 'application/json; charset=UTF-8',
+                "Authorization": f"Bearer {self.client.access_token}",
+                "Content-Type": "application/json; charset=UTF-8",
             },
-            json={**kwargs}
+            json={**kwargs},
         )
 
         return response
 
     def base_delete_request(self, base_url, **kwargs) -> requests.Response:
         response = requests.delete(
-            base_url,
-            headers={
-                'Authorization': f'Bearer {self.client.access_token}'
-            }
+            base_url, headers={"Authorization": f"Bearer {self.client.access_token}"}
         )
 
         return response

@@ -1,6 +1,6 @@
-START = '2019-08-27T12:00:00Z'
-END = '2019-09-27T12:00:00Z'
-RANGE = 'replies'
+START = "2019-08-27T12:00:00Z"
+END = "2019-09-27T12:00:00Z"
+RANGE = "replies"
 
 
 def test_chat_report(test_client):
