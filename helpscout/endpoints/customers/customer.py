@@ -15,7 +15,7 @@ class Customer(Endpoint):
 
         return self.process_get_result(response)
 
-    def ge(self, customer_id: int, **kwargs) -> Dict:
+    def get(self, customer_id: int, **kwargs) -> Dict:
         response = self.base_get_request(f"{self.base_url}/{customer_id}", **kwargs)
 
         return self.process_get_result(response)
