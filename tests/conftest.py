@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from helpscout.helpscout import Client
+from helpscout import Client
 
 APP_ID = os.getenv("TEST_APP_ID")
 APP_SECRET = os.getenv("TEST_APP_SECRET")
