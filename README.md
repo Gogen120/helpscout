@@ -2,7 +2,7 @@
 This package provide wrapper for Help Scout API 2.0. It gives access to all mailbox endpoints.
 
 ## Instalation
-You can install it from pypi: `pip install helpscout`
+You can install it from pypi: `pip install helpscout-wrapper`
 
 ## Authentication
 To use API you need to create app and get `app_id` and `app_secret`.
