@@ -161,8 +161,6 @@ All endpoint commands and coresponding parameters you can find in [documentation
 **List all conversations**
 ```python
 >>> from helpscout import Client
-
-
 >>> client = Client('<YOUR_APP_ID>', '<YOUR_APP_SECRET>')
 >>> client.conversation.list()
 {
