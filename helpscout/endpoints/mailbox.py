@@ -15,7 +15,7 @@ class Mailbox(Endpoint):
 
         return self.process_get_result(response)
 
-    def mailbox(self, mailbox_id: int) -> Dict:
+    def get(self, mailbox_id: int) -> Dict:
         """Get mailbox by id.
 
         Doc page: https://developer.helpscout.com/mailbox-api/endpoints/mailboxes/get/
