@@ -35,6 +35,7 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | Create chat thread | `client.conversation.thread.create_chat_thread(conv_id, kwargs)` |
 
 **Customers**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List customers | `client.customer.list(kwargs)` |
@@ -67,6 +68,7 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | Delete website | `client.customer.website.delete(cust_id, website_id)` |
 
 **Mailboxes**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List mailboxes | `client.mailbox.list()` |
@@ -75,6 +77,7 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | List mailbox folders | `client.mailbox.mailbox_folders(mailbox_id)` |
 
 **Reports**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | Chat report | `client.report.chat_report(start, end, kwargs)` |
@@ -109,22 +112,26 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | User resolution | `client.report.user.resolution(user, start, end, kwargs)` |
 
 **Tags**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List tags | `client.tag.list(kwargs)` |
 
 **Teams**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List teams | `client.team.list(kwargs)` |
 | List team members | `client.team.members(team_id, kwargs)` |
 
 **Tags**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List tags | `client.tag.list(kwargs)` |
 
 **Tags**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List users | `client.user.list(kwargs)` |
@@ -132,6 +139,7 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | Get resource owner | `client.user.resource_owner()` |
 
 **Webhook**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List webhooks | `client.webhook.list()` |
@@ -141,6 +149,7 @@ All endpoint commands and coresponding parameters you can find in [documentation
 | Delete webhook | `client.webhook.delete(webhook_id)` |
 
 **Workflow**
+
 | API Endpoint | Wrapper command |
 | ------------ | --------------- |
 | List workflows | `client.workflow.list(kwargs)` |
