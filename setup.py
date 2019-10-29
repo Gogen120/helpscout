@@ -7,7 +7,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 setup(
-    name="helpscout",
+    name="helpscout-wrapper",
     version="0.0.1",
     description="HelpScout api wrapper",
     long_description=README,
