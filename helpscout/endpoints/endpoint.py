@@ -20,7 +20,7 @@ class Endpoint:
     def process_get_result(self, response: requests.Response) -> Dict:
         """Process response with coresponding status code."""
         if response.status_code == 400:
-            raise exc.BadRequestException
+            raise exc.BadRequestException(response.json())
         elif response.status_code == 401:
             raise exc.NotAuthorizedException
         elif response.status_code == 404:
