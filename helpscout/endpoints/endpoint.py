@@ -34,7 +34,8 @@ class Endpoint:
         Raise exception if response status code does't match provided one
         """
         if response.status_code != status_code:
-            raise exc.BadRequestException
+            print(status_code)
+            raise exc.BadRequestException(response.json())
 
         return response.status_code
 
