@@ -8,7 +8,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="helpscout-wrapper",
-    version="0.0.1",
+    version="0.0.3",
     description="HelpScout api wrapper",
     long_description=README,
     long_description_content_type="text/markdown",
